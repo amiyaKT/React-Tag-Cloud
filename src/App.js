@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { TextArea } from './Components/TextArea';
+import { WordCloud } from './Components/WordCloud';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [paraText, setParaText] = useState('');
+	const [showTagCloud, setShowTagCloud] = useState(false);
+
+	return (
+		<div className="app-container container">
+			{!showTagCloud ? (
+				<TextArea
+					text={paraText}
+					changeText={setParaText}
+					toggleTagCloud={setShowTagCloud}
+				></TextArea>
+			) : (
+				<WordCloud text={paraText} toggleTagCloud={setShowTagCloud}></WordCloud>
+			)}
+		</div>
+	);
 }
 
 export default App;

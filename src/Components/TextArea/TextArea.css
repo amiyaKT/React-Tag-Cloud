@@ -1,0 +1,24 @@
+.para-text-form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.text-area {
+	display: block;
+	width: 100%;
+	resize: none;
+	overflow: auto;
+	padding: 1rem;
+	font-size: 1rem;
+	font-weight: 600;
+	border: 0.1rem solid #afcbff;
+	border-radius: 0.5rem;
+	outline: none;
+	transition: 0.15s ease-in-out border;
+}
+
+.text-area:focus {
+	border-color: #0e1c36;
+}
