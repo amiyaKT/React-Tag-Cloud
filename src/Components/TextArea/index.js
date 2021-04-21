@@ -40,9 +40,12 @@ export class TextArea extends Component {
 	};
 
 	onHandleBlur = () => {
-		this.setState({
-			touched: true,
-		});
+		this.setState(
+			{
+				touched: true,
+			},
+			() => this.handleError(this.state.text)
+		);
 	};
 
 	handleError(text) {
@@ -119,7 +122,7 @@ export class TextArea extends Component {
 				<button
 					type="submit"
 					className="btn btn-primary"
-					disabled={hasError || !this.state.touched}
+					disabled={this.state.touched ? hasError : true}
 				>
 					Generate Tag Cloud
 				</button>
