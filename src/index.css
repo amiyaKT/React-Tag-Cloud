@@ -80,6 +80,10 @@ label {
 	letter-spacing: 0.035rem;
 }
 
+.error-message {
+	color: #e71d36;
+}
+
 .btn {
 	padding: 1rem 3rem;
 	border: 0px;

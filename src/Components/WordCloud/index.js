@@ -67,11 +67,13 @@ export class WordCloud extends Component {
 			}))
 			.sort((a, b) => a.count - b.count);
 
-		this.setState({
-			frequencies: this.normalizedMapping(freqMapping.slice()),
-			maxCount: freqMapping[freqMapping.length - 1].count,
-			minCount: freqMapping[0].count,
-		});
+		if (Object.keys(freqCount).length !== 0) {
+			this.setState({
+				frequencies: this.normalizedMapping(freqMapping.slice()),
+				maxCount: freqMapping[freqMapping.length - 1].count,
+				minCount: freqMapping[0].count,
+			});
+		}
 	}
 
 	normalizedMapping(mapping) {
@@ -111,22 +113,26 @@ export class WordCloud extends Component {
 	}
 
 	render() {
-		if (this.state.frequencies.length > 0) {
-			return (
-				<div className="word-cloud-container">
+		return (
+			<div className="word-cloud-container">
+				{this.state.frequencies.length > 0 ? (
 					<ul className="word-cloud-list">{this.renderWords()}</ul>
-					<div className="btn-container">
-						<button
-							onClick={this.onHandleToggleTagCloud}
-							className="btn btn-primary"
-						>
-							Back
-						</button>
-					</div>
+				) : (
+					<p className="error-message">
+						Ooops! Looks like the text entered doesn't contain any words.
+						Please, go back and enter valid text.
+					</p>
+				)}
+				<div className="btn-container">
+					<button
+						onClick={this.onHandleToggleTagCloud}
+						className="btn btn-primary"
+					>
+						Back
+					</button>
 				</div>
-			);
-		}
-		return null;
+			</div>
+		);
 	}
 }
 
